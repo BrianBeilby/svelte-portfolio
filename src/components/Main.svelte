@@ -61,6 +61,29 @@
         class="object-cover z-[2] max-h-[70vh]"
       />
     </div> -->
+    <div class="stage-cube-cont">
+      <div class="cubespinner">
+        <div class="face1">
+          <i class="fa-brands fa-angular" />
+        </div>
+        <div class="face2">
+          <i class="fa-brands fa-angular" />
+        </div>
+        <div class="face3">
+          <i class="fa-brands fa-angular" />
+        </div>
+        <div class="face4">
+          <i class="fa-brands fa-angular" />
+        </div>
+        <div class="face5">
+          <i class="fa-brands fa-angular" />
+        </div>
+        <div class="face6">
+          <i class="fa-brands fa-angular" />
+        </div>
+      </div>
+    </div>
+
   </section>
   <section id="projects" class="py-20 lg:py-32 flex flex-col gap-24">
     <div class="flex flex-col gap-2 text-center">
