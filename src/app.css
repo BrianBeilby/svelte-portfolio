@@ -53,11 +53,11 @@ h3,
 
   .face1 {
     transform: translateZ(100px);
-    color: #dd0031;
+    color: #61dafb;
   }
   .face2 {
-    transform: rotateY(90deg) translateZ(100px);
-    color: #f06529;
+    transform: rotateY(90deg) rotateZ(-90deg) translateZ(100px);
+    color: #68a063;
   }
   .face3 {
     transform: rotateY(90deg) rotateX(90deg) translateZ(100px);
@@ -65,11 +65,11 @@ h3,
   }
   .face4 {
     transform: rotateY(180deg) rotateZ(90deg) translateZ(100px);
-    color: #5ed4f4;
+    color: #f06529;
   }
   .face5 {
     transform: rotateY(-90deg) rotateZ(90deg) translateZ(100px);
-    color: #efd81d;
+    color: #28a4d9;
   }
   .face6 {
     transform: rotateX(-90deg) translateZ(100px);
