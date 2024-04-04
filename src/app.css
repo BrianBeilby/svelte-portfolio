@@ -18,6 +18,7 @@ h3,
 }
 
 .stage-cube-cont {
+  z-index: -10;
   width: 50%;
   height: 100%;
   top: 0;
@@ -42,13 +43,13 @@ h3,
     width: 200px;
     height: 200px;
     border: 1px solid #ccc;
-    background: rgba(255, 255, 255, 0.4);
+    background: rgba(7, 1, 29, 0.4);
     text-align: center;
     font-size: 100px;
     display: flex;
     justify-content: center;
     align-items: center;
-    box-shadow: 0 0 20px 0px lightyellow;
+    box-shadow: 0 0 20px 0px rgb(167 139 250);
   }
 
   .face1 {
@@ -73,7 +74,7 @@ h3,
   }
   .face6 {
     transform: rotateX(-90deg) translateZ(100px);
-    color: #ec4d28;
+    color: #4584b6;
   }
 }
 
