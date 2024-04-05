@@ -1,5 +1,6 @@
 <script>
   import Step from "./Step.svelte";
+  import Typewriter from "svelte-typewriter";
 
   let steps = [
     {
@@ -53,10 +54,23 @@
     <div
       class="flex flex-col lg:justify-center text-center lg:text-left gap-6 md:gap-8 lg:gap-10 z-10"
     >
-      <h2 class="font-semibold text-4xl sm:text-5xl md:text-6xl">
+      <h2
+        class="typewriter-container font-semibold text-4xl sm:text-5xl md:text-6xl"
+      >
         Hi! I'm <span class="poppins text-violet-400">Brian</span> Beilby
-        <br />Full Stack
-        <span class="poppins text-violet-400">Developer</span>
+        <br />
+        <Typewriter
+          element="span"
+          mode="loopOnce"
+          interval={50}
+          unwriteInterval={50}
+          cursor={true}
+          keepCursorOnFinish={true}
+        >
+          <span class="poppins text-violet-500">Front End Developer</span>
+          <span class="poppins text-violet-500">Back End Developer</span>
+          <span class="poppins text-violet-500">Full Stack Developer</span>
+        </Typewriter>
       </h2>
       <p class="text-base sm:text-lg md:text-xl">
         My <span class="text-violet-400"> favorite tech</span> includes JavaScript
@@ -183,3 +197,10 @@
     </div>
   </section>
 </main>
+
+<style>
+  .typewriter-container {
+    --cursor-color: white; /* Green cursor */
+    --cursor-width: 4px; /* Thicker cursor */
+  }
+</style>
