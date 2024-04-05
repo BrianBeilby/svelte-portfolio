@@ -74,9 +74,9 @@
           cursor={true}
           keepCursorOnFinish={true}
         >
-          <span class="poppins text-violet-500">Front End Developer</span>
-          <span class="poppins text-violet-500">Back End Developer</span>
-          <span class="poppins text-violet-500">Full Stack Developer</span>
+          <span class="poppins text-violet-400">Front End Developer</span>
+          <span class="poppins text-violet-400">Back End Developer</span>
+          <span class="poppins text-violet-400">Full Stack Developer</span>
         </Typewriter>
       </h2>
       <p class="text-base sm:text-lg md:text-xl">
