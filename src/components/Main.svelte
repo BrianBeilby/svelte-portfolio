@@ -1,6 +1,31 @@
 <script>
   import Step from "./Step.svelte";
   import Typewriter from "svelte-typewriter";
+  import { onMount } from "svelte";
+
+  onMount(() => {
+    function handleScroll() {
+      const aboutSection = document.getElementById("about");
+      const viewportHeight = window.innerHeight;
+      const sectionTop = aboutSection.getBoundingClientRect().top;
+
+      let scrollRatio = Math.max(
+        0,
+        Math.min(1, (viewportHeight - sectionTop) / viewportHeight)
+      );
+
+      const lineLength = `${scrollRatio * 100}%`;
+
+      document.getElementById("beforeLine").style.width = lineLength;
+      document.getElementById("afterLine").style.width = lineLength;
+    }
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  });
 
   let steps = [
     {
@@ -25,25 +50,6 @@
         "SacStateIEEE is a Next.js & TailwindCSS web application, hosted on Vercel, that offers a user-friendly platform to display information about the IEEE club at Sac State!",
     },
   ];
-
-  let benefits = [
-    {
-      metric: "10x",
-      name: "a passionate",
-      description:
-        "I taught myself to code using free online resources and absolutely fell in love with the creativity and problem solving that is involved in developing and engineering innovative new online experiences. Starting of with JavaScript, HTML & CSS and evolving my knowledge base to include JavaScript frameworks, backend programming, design, cloud services and much much more.",
-    },
-    {
-      name: "a product design & UX finatic",
-      description:
-        "Carefully crafting and designing amazing user experiences allows me to express and experiment with every morsel of creativity I have. I love the challenge of learning new design concepts and enabling users with amazing online experiences.",
-    },
-    {
-      name: "an excellent communicator",
-      description:
-        "Communication is key and it's a paramount value of mine. I believe in transparency and constructive communication above all else. This helps me develop deep relationships and ensures my effectiveness and productivity in any work space with any team.",
-    },
-  ];
 </script>
 
 <main class="flex flex-col flex-1 p-4">
@@ -62,8 +68,9 @@
         <Typewriter
           element="span"
           mode="loopOnce"
-          interval={50}
-          unwriteInterval={50}
+          interval={60}
+          unwriteInterval={40}
+          wordInterval={2000}
           cursor={true}
           keepCursorOnFinish={true}
         >
@@ -115,13 +122,18 @@
       </div>
     </div>
   </section>
-  <section class="py-20 lg:py-32 flex flex-col gap-24" id="projects">
+  <section
+    class="py-20 lg:py-32 flex flex-col gap-24 slide-in-up"
+    id="projects"
+  >
     <div class="flex flex-col gap-2 text-center z-10">
       <h6 class="text-large sm:text-xl md:text-2xl">
         A few of my creative endeavors.
       </h6>
       <h3 class="font-semibold text-3xl sm:text-4xl md:text-5xl">
-        Curious to <span class="poppins text-violet-400">see</span> my work?
+        <div class="animate-text-shimmer">
+          Curious to <span class="poppins text-violet-400">see</span> my work?
+        </div>
       </h3>
     </div>
     <!-- <a
@@ -167,9 +179,17 @@
     id="about"
     class="py-20 pt-10 lg:pt-16 lg:py-32 flex flex-col gap-16 sm:gap-20 md:gap-24 relative"
   >
-    <div
-      class="flex flex-col gap-2 text-center relative before:absolute before:top-0 before:left-0 before:w-2/3 before:h-1.5 before:bg-violet-700 after:absolute after:bottom-0 after:right-0 after:w-2/3 after:h-1.5 after:bg-violet-700 py-4"
-    >
+    <div class="flex flex-col gap-2 text-center relative py-4">
+      <div
+        id="beforeLine"
+        class="absolute top-0 left-0 h-1.5 bg-violet-700"
+        style="width: 0%;"
+      ></div>
+      <div
+        id="afterLine"
+        class="absolute bottom-0 right-0 h-1.5 bg-violet-700"
+        style="width: 0%;"
+      ></div>
       <h6 class="text-large sm:text-xl md:text-2xl">Want to know more?</h6>
       <h3 class="font-semibold text-3xl sm:text-4xl md:text-5xl">
         A bit <span class="poppins text-violet-400">about</span> me.
@@ -200,7 +220,44 @@
 
 <style>
   .typewriter-container {
-    --cursor-color: white; /* Green cursor */
-    --cursor-width: 4px; /* Thicker cursor */
+    --cursor-color: #a78bfa; /* Green cursor */
+    --cursor-width: 6px; /* Thicker cursor */
+  }
+
+  @keyframes text-shimmer {
+    from {
+      background-position: 0 0;
+    }
+    to {
+      background-position: -200% 0;
+    }
+  }
+
+  .animate-text-shimmer {
+    background-clip: text;
+    color: transparent;
+    background-image: linear-gradient(
+      110deg,
+      #e2e8f0 45%,
+      #1e293b 55%,
+      #e2e8f0
+    );
+    background-size: 250% 100%;
+    animation: text-shimmer 4s ease-out infinite alternate;
+  }
+
+  @keyframes slideInUp {
+    from {
+      transform: translateY(100%);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+
+  .slide-in-up {
+    animation: slideInUp 1.5s ease-out forwards;
   }
 </style>
