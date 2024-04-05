@@ -3,9 +3,9 @@
 >
   <p>
     <a
-      href="mailto:brianbeilby98@gmail.com"
+      href="mailto:brian@brianbeilby.dev"
       class="text-violet-400 hover:text-violet-300"
-      >brianbeilby98@gmail.com<sup
+      >brian@brianbeilby.dev<sup
         ><span class="text-xs scale-75 pl-0.5">
           <i
             class="fa-solid fa-arrow-up-right-from-square text-xs scale-[75%]"
