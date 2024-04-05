@@ -4,7 +4,7 @@
   <p>
     <a
       href="mailto:brian@brianbeilby.dev"
-      class="text-violet-400 hover:text-violet-300"
+      class="font-semibold poppins text-violet-400 hover:text-violet-300"
       >brian@brianbeilby.dev<sup
         ><span class="text-xs scale-75 pl-0.5">
           <i
