@@ -24,7 +24,7 @@
       <a
         class="text-sky-600"
         target="_blank"
-        href="https://www.linkedin.com/in/brian-beilby-7b728923b/"
+        href="https://www.linkedin.com/in/brianbeilby/"
       >
         <i class="fa-brands fa-linkedin text-2xl"></i>
       </a>

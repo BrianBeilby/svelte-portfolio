@@ -104,7 +104,7 @@
         (Next.js or SvelteKit), TailwindCSS, Node.js + Express.js & MongoDB or Firebase!
       </p>
       <a
-        href="https://www.linkedin.com/in/brian-beilby-7b728923b/"
+        href="https://www.linkedin.com/in/brianbeilby/"
         target="_blank"
         class="blueShadow mx-auto lg:mr-auto lg:ml-0 text-base sm:text-lg md:text-xl poppins relative overflow-hidden px-6 py-3 group rounded-full bg-white text-slate-950 z-10"
       >
