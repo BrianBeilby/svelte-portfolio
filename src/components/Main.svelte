@@ -2,11 +2,31 @@
   import Step from "./Step.svelte";
   import Typewriter from "svelte-typewriter";
   import { onMount } from "svelte";
-  import { slide } from "svelte/transition";
-  let isVisible = false;
+  import { fade } from "svelte/transition";
+  let aboutVisible = false;
+
+  function observeVisibility(node, { onEnter }) {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            onEnter();
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
+
+    observer.observe(node);
+
+    return {
+      destroy() {
+        observer.unobserve(node);
+      },
+    };
+  }
 
   onMount(() => {
-    isVisible = true;
     function handleScroll() {
       const aboutSection = document.getElementById("about");
       const viewportHeight = window.innerHeight;
@@ -181,6 +201,7 @@
     </div>
   </section>
   <section
+    use:observeVisibility={{ onEnter: () => (aboutVisible = true) }}
     id="about"
     class="py-20 pt-10 lg:pt-16 lg:py-32 flex flex-col gap-16 sm:gap-20 md:gap-24 relative"
   >
@@ -195,28 +216,39 @@
         class="absolute bottom-0 right-0 h-1.5 bg-violet-700"
         style="width: 0%;"
       ></div>
-      <h6 class="text-large sm:text-xl md:text-2xl">Want to know more?</h6>
-      <h3 class="font-semibold text-3xl sm:text-4xl md:text-5xl">
-        A bit <span class="poppins text-violet-400">about</span> me.
-      </h3>
+      {#if aboutVisible}
+        <div in:fade={{ duration: 3000 }}>
+          <h6 class="text-large sm:text-xl md:text-2xl">Want to know more?</h6>
+          <h3 class="font-semibold text-3xl sm:text-4xl md:text-5xl">
+            A bit <span class="poppins text-violet-400">about</span> me.
+          </h3>
+        </div>
+      {/if}
     </div>
-    <p
-      class="mx-auto poppins text-center text-slate-200 font-semibold text-lg sm:text-xl md:text-2xl"
-    >
-      I am currently a Computer Science student at <span
-        class="poppins text-violet-400"
-        >California State University, Sacramento</span
-      > set to graduate this semester. My experience spans many different types of
-      projects from web applications to command line applications. Outside of coding,
-      I am an avid weightlifter and music enthusiast.
-    </p>
-    <p
-      class="mx-auto poppins text-center text-slate-300 text:md sm:text:lg md:text-xl"
-    >
-      As I transition to the professional world, I am eager to bring my blend of
-      creativity and technical expertise to a team passionate about delivering
-      impactful software solutions.
-    </p>
+    {#if aboutVisible}
+      <div
+        class="flex flex-col gap-16 sm:gap-20 md:gap-24 relative"
+        in:fade={{ duration: 3000 }}
+      >
+        <p
+          class="mx-auto poppins text-center text-slate-200 font-semibold text-lg sm:text-xl md:text-2xl"
+        >
+          I am currently a Computer Science student at <span
+            class="poppins text-violet-400"
+            >California State University, Sacramento</span
+          > set to graduate this semester. My experience spans many different types
+          of projects from web applications to command line applications. Outside
+          of coding, I am an avid weightlifter and music enthusiast.
+        </p>
+        <p
+          class="mx-auto poppins text-center text-slate-300 text:md sm:text:lg md:text-xl"
+        >
+          As I transition to the professional world, I am eager to bring my
+          blend of creativity and technical expertise to a team passionate about
+          delivering impactful software solutions.
+        </p>
+      </div>
+    {/if}
     <div class="mx-auto -mt-12 italic sm:hidden opacity-50">
       <p>Scroll to see more &rarr;</p>
     </div>
