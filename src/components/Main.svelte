@@ -3,22 +3,19 @@
   import Typewriter from "svelte-typewriter";
   import { onMount } from "svelte";
   import { fade } from "svelte/transition";
-  let aboutVisible = false;
+  import { writable } from "svelte/store";
+  let isBlurred = writable(true);
 
-  function observeVisibility(node, { onEnter }) {
+  function observeVisibility(node) {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            onEnter();
-          }
+          isBlurred.set(!entry.isIntersecting);
         });
       },
       { threshold: 0.1 }
     );
-
     observer.observe(node);
-
     return {
       destroy() {
         observer.unobserve(node);
@@ -148,7 +145,7 @@
     </div>
   </section>
   <section
-    class="py-20 lg:py-32 flex flex-col gap-24 slide-in-up"
+    class="py-20 lg:py-32 flex flex-col gap-24"
     id="projects"
   >
     <div class="flex flex-col gap-2 text-center z-10">
@@ -201,7 +198,7 @@
     </div>
   </section>
   <section
-    use:observeVisibility={{ onEnter: () => (aboutVisible = true) }}
+    use:observeVisibility
     id="about"
     class="py-20 pt-10 lg:pt-16 lg:py-32 flex flex-col gap-16 sm:gap-20 md:gap-24 relative"
   >
@@ -216,8 +213,10 @@
         class="absolute bottom-0 right-0 h-1.5 bg-violet-700"
         style="width: 0%;"
       ></div>
-      {#if aboutVisible}
-        <div in:fade={{ duration: 3000 }}>
+      {#if $isBlurred}
+        <!-- This content will not be visible initially but will fade in/out based on isBlurred state -->
+      {:else}
+        <div transition:fade={{ duration: 1500 }}>
           <h6 class="text-large sm:text-xl md:text-2xl">Want to know more?</h6>
           <h3 class="font-semibold text-3xl sm:text-4xl md:text-5xl">
             A bit <span class="poppins text-violet-400">about</span> me.
@@ -225,11 +224,10 @@
         </div>
       {/if}
     </div>
-    {#if aboutVisible}
-      <div
-        class="flex flex-col gap-16 sm:gap-20 md:gap-24 relative"
-        in:fade={{ duration: 3000 }}
-      >
+    {#if $isBlurred}
+      <!-- This content will not be visible initially but will fade in/out based on isBlurred state -->
+    {:else}
+      <div class="flex flex-col gap-16 sm:gap-20 md:gap-24" transition:fade={{ duration: 1500 }}>
         <p
           class="mx-auto poppins text-center text-slate-200 font-semibold text-lg sm:text-xl md:text-2xl"
         >
