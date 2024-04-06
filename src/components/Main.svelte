@@ -2,8 +2,11 @@
   import Step from "./Step.svelte";
   import Typewriter from "svelte-typewriter";
   import { onMount } from "svelte";
+  import { slide } from "svelte/transition";
+  let isVisible = false;
 
   onMount(() => {
+    isVisible = true;
     function handleScroll() {
       const aboutSection = document.getElementById("about");
       const viewportHeight = window.innerHeight;
@@ -83,14 +86,16 @@
         My <span class="text-violet-400"> favorite tech</span> includes JavaScript
         (Next.js or SvelteKit), TailwindCSS, Node.js + Express.js & MongoDB or Firebase!
       </p>
-      <button
+      <a
+        href="https://www.linkedin.com/in/brian-beilby-7b728923b/"
+        target="_blank"
         class="blueShadow mx-auto lg:mr-auto lg:ml-0 text-base sm:text-lg md:text-xl poppins relative overflow-hidden px-6 py-3 group rounded-full bg-white text-slate-950 z-10"
       >
         <div
           class="absolute top-0 right-full w-full h-full bg-violet-400 opacity-20 group-hover:translate-x-full z-0 duration-200"
         />
         <h4 class="relative z-9">Get in touch &rarr;</h4>
-      </button>
+      </a>
     </div>
     <!-- <div class="relative shadow-2xl grid place-items-center">
       <img
@@ -244,20 +249,5 @@
     );
     background-size: 250% 100%;
     animation: text-shimmer 4s ease-out infinite alternate;
-  }
-
-  @keyframes slideInUp {
-    from {
-      transform: translateY(100%);
-      opacity: 0;
-    }
-    to {
-      transform: translateY(0);
-      opacity: 1;
-    }
-  }
-
-  .slide-in-up {
-    animation: slideInUp 1.5s ease-out forwards;
   }
 </style>
