@@ -56,7 +56,7 @@
         "SakuraBot is a multipurpose Discord bot created with Discord.js, Node.js & MongoDB! SakuraBot has many functionalities including moderation, language translation, and music playing!",
     },
     {
-      name: "InventoryManagement",
+      name: "SkeeterStock",
       icon: "fa-solid fa-qrcode",
       href: "https://github.com/vstatnyk/Inventory-tracking-app-CSC190-191",
       description:
@@ -68,6 +68,13 @@
       href: "https://sacstateieee.com/",
       description:
         "SacStateIEEE is a Next.js & TailwindCSS web application, hosted on Vercel, that offers a user-friendly platform to display information about the IEEE club at Sac State!",
+    },
+    {
+      name: "Kernel Panic",
+      icon: "fa-solid fa-terminal",
+      href: "https://github.com/BrianBeilby/Kernel-Panic",
+      description:
+        "Kernel Panic is a simplistic yet functional operating system built using C within a specialized SpedeVM environment implementing process scheduling, interrupt handling, system calls, mutexes/semaphores, and more!",
     },
   ];
 </script>
@@ -144,10 +151,7 @@
       </div>
     </div>
   </section>
-  <section
-    class="py-20 lg:py-32 flex flex-col gap-24"
-    id="projects"
-  >
+  <section class="py-20 lg:py-32 flex flex-col gap-24" id="projects">
     <div class="flex flex-col gap-2 text-center z-10">
       <h6 class="text-large sm:text-xl md:text-2xl">
         A few of my creative endeavors.
@@ -195,6 +199,18 @@
           Mosquito & Vector Control District!
         </p>
       </Step>
+      <div class="col-start-2">
+        <Step step={steps[3]}>
+          <p>
+            Kernel Panic is a simplistic yet functional operating system built
+            using C within a specialized SpedeVM environment implementing <strong
+              class="text-violet-400"
+              >process scheduling, interrupt handling, system calls,
+              mutexes/semaphores</strong
+            >, and more!
+          </p>
+        </Step>
+      </div>
     </div>
   </section>
   <section
@@ -227,7 +243,10 @@
     {#if $isBlurred}
       <!-- This content will not be visible initially but will fade in/out based on isBlurred state -->
     {:else}
-      <div class="flex flex-col gap-16 sm:gap-20 md:gap-24" transition:fade={{ duration: 1500 }}>
+      <div
+        class="flex flex-col gap-16 sm:gap-20 md:gap-24"
+        transition:fade={{ duration: 1500 }}
+      >
         <p
           class="mx-auto poppins text-center text-slate-200 font-semibold text-lg sm:text-xl md:text-2xl"
         >
