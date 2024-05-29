@@ -250,10 +250,10 @@
         <p
           class="mx-auto poppins text-center text-slate-200 font-semibold text-lg sm:text-xl md:text-2xl"
         >
-          I am currently a Computer Science student at <span
+          I am a recent Computer Science graduate from <span
             class="poppins text-violet-400"
             >California State University, Sacramento</span
-          > set to graduate this semester. My experience spans many different types
+          >. My experience spans many different types
           of projects from web applications to command line applications. Outside
           of coding, I am an avid weightlifter and music enthusiast.
         </p>
