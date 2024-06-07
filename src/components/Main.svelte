@@ -199,7 +199,7 @@
           Mosquito & Vector Control District!
         </p>
       </Step>
-      <div class="col-start-2">
+      <div class="lg:col-start-2">
         <Step step={steps[3]}>
           <p>
             Kernel Panic is a simplistic yet functional operating system built
