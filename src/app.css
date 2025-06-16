@@ -2,19 +2,60 @@
 @tailwind components;
 @tailwind utilities;
 
-html {
-  scroll-behavior: smooth;
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  * {
+    font-family: "Roboto", sans-serif;
+  }
+
+  h1,
+  h2,
+  h3,
+  .poppins {
+    font-family: "Poppins", sans-serif;
+  }
+
+  body {
+    @apply transition-colors duration-300;
+  }
 }
 
-* {
-  font-family: "Roboto", sans-serif;
-}
+@layer components {
+  .glass-effect {
+    @apply bg-white/5 dark:bg-white/5 backdrop-blur-md border border-white/10;
+  }
 
-h1,
-h2,
-h3,
-.poppins {
-  font-family: "Poppins", sans-serif;
+  .gradient-text {
+    @apply bg-gradient-to-r from-accent-400 via-primary-400 to-accent-600 bg-clip-text text-transparent;
+  }
+
+  .hover-lift {
+    @apply transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl;
+  }
+
+  .glow-on-hover {
+    @apply transition-all duration-300 hover:shadow-lg hover:shadow-accent-500/25;
+  }
+
+  .animate-on-scroll {
+    @apply opacity-0 translate-y-8 transition-all duration-700 ease-out;
+  }
+
+  .animate-on-scroll.visible {
+    @apply opacity-100 translate-y-0;
+  }
+
+  /* Light mode text shadows for better readability */
+  .text-shadow-light {
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  }
+
+  .text-shadow-light-lg {
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+  }
 }
 
 .stage-cube-cont {
@@ -37,6 +78,10 @@ h3,
   transform-style: preserve-3d;
   transform-origin: 100px 100px 0;
   margin-left: calc(50% - 100px);
+  /* Performance optimizations */
+  will-change: transform;
+  backface-visibility: hidden;
+  transform: translateZ(0); /* Force hardware acceleration */
 
   div {
     position: absolute;
@@ -50,6 +95,9 @@ h3,
     justify-content: center;
     align-items: center;
     box-shadow: 0 0 20px 0px rgb(167 139 250);
+    /* Performance optimizations for cube faces */
+    backface-visibility: hidden;
+    transform-style: preserve-3d;
   }
 
   .face1 {
@@ -78,6 +126,43 @@ h3,
   }
 }
 
+/* Fine-tuned light mode cube styling for optimal visual appearance */
+html:not(.dark) .cubespinner div {
+  border: 1px solid rgba(71, 85, 105, 0.4) !important;
+  background: rgba(255, 255, 255, 0.9) !important;
+  box-shadow:
+    0 0 30px 0px rgba(99, 102, 241, 0.3),
+    0 12px 40px 0px rgba(0, 0, 0, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.8) !important;
+  backdrop-filter: blur(12px);
+}
+
+/* Enhanced technology icon colors for optimal light mode contrast */
+html:not(.dark) .cubespinner .face1 {
+  color: #0284c7 !important; /* React - deep sky blue */
+  text-shadow: 0 2px 8px rgba(2, 132, 199, 0.3);
+}
+html:not(.dark) .cubespinner .face2 {
+  color: #059669 !important; /* Node.js - emerald green */
+  text-shadow: 0 2px 8px rgba(5, 150, 105, 0.3);
+}
+html:not(.dark) .cubespinner .face3 {
+  color: #dc2626 !important; /* Git - red */
+  text-shadow: 0 2px 8px rgba(220, 38, 38, 0.3);
+}
+html:not(.dark) .cubespinner .face4 {
+  color: #ea580c !important; /* HTML5 - orange */
+  text-shadow: 0 2px 8px rgba(234, 88, 12, 0.3);
+}
+html:not(.dark) .cubespinner .face5 {
+  color: #2563eb !important; /* CSS3 - blue */
+  text-shadow: 0 2px 8px rgba(37, 99, 235, 0.3);
+}
+html:not(.dark) .cubespinner .face6 {
+  color: #7c3aed !important; /* Python - violet */
+  text-shadow: 0 2px 8px rgba(124, 58, 237, 0.3);
+}
+
 @keyframes spincube {
   from,
   to {
@@ -100,21 +185,53 @@ h3,
   }
 }
 
-/* Scrollbar Styles */
+
+
+/* Enhanced Scrollbar Styles */
 *::-webkit-scrollbar {
-  width: 17px;
+  width: 12px;
 }
 
 *::-webkit-scrollbar-track {
-  background: #020617;
+  background: #1e293b;
+  border-radius: 6px;
 }
 
 *::-webkit-scrollbar-thumb {
-  background-color: #a78bfa;
-  border-radius: 14px;
-  border: 3px solid #140222;
+  background: linear-gradient(180deg, #a855f7, rgba(168, 85, 247, 0.7));
+  border-radius: 6px;
+  border: 2px solid #1e293b;
+  transition: all 0.3s ease;
 }
 
-::-webkit-scrollbar-thumb:hover {
-  background-color: #c4b5fd;
+*::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, rgba(168, 85, 247, 0.9), #a855f7);
+  transform: scale(1.1);
+}
+
+/* Additional utility classes */
+@layer utilities {
+  .text-shadow {
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  }
+
+  .text-shadow-lg {
+    text-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+  }
+
+  .backdrop-blur-xs {
+    backdrop-filter: blur(2px);
+  }
+
+  .perspective-1000 {
+    perspective: 1000px;
+  }
+
+  .transform-style-3d {
+    transform-style: preserve-3d;
+  }
+
+  .backface-hidden {
+    backface-visibility: hidden;
+  }
 }

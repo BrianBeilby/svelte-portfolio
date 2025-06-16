@@ -29,16 +29,42 @@
 
   <body
     data-sveltekit-preload-data="hover"
-    class="bg-slate-950 text-white relative"
+    class="bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-white relative transition-colors duration-300"
   >
-    <div style="display: contents" class="relative z-[1]">%sveltekit.body%</div>
+    <div style="display: contents" class="relative z-[10]">%sveltekit.body%</div>
 
-    <div class="absolute min-h-screen top-0 left-0 w-full z-[1] opacity-70">
-      <div id="particles-js" class="absolute inset-0" />
+    <!-- Particle background with interactivity enabled -->
+    <div class="fixed inset-0 w-screen h-screen z-[1] opacity-70 dark:opacity-60 transition-opacity duration-300">
+      <div id="particles-js" class="w-full h-full" />
     </div>
+
+    <!-- Gradient overlay for better visual depth -->
+    <div class="fixed inset-0 z-[0] bg-gradient-to-br from-transparent via-transparent to-accent-500/5 dark:to-accent-500/10 pointer-events-none"></div>
     <script>
-      particlesJS.load("particles-js", "assets/particles.json", function () {
-        console.log("callback - particles.js config loaded");
+      function loadParticles() {
+        const isDark = document.documentElement.classList.contains('dark');
+        const configFile = isDark ? "assets/particles.json" : "assets/particles-light.json";
+
+        particlesJS.load("particles-js", configFile, function () {
+          console.log("callback - particles.js config loaded:", isDark ? 'dark' : 'light');
+        });
+      }
+
+      // Initial load
+      loadParticles();
+
+      // Listen for theme changes
+      const observer = new MutationObserver(function(mutations) {
+        mutations.forEach(function(mutation) {
+          if (mutation.type === 'attributes' && mutation.attributeName === 'class') {
+            loadParticles();
+          }
+        });
+      });
+
+      observer.observe(document.documentElement, {
+        attributes: true,
+        attributeFilter: ['class']
       });
     </script>
   </body>
